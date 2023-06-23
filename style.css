@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Unbounded:wght@700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
 }
 
-html{
+html {
     font-size: 6.25%;
 }
 
-body{
+body {
     font-size: 16rem;
 }
 
-:root{
+:root {
     --primary-color: #1bc3ff;
     --secondary-color: #ff5252;
     --tertiary-color: #ffbc1a;
@@ -23,7 +23,7 @@ body{
     --text-color: #f5f5f5;
     --secondary-text-color: #aaabaf;
 
-    --primary-color-hover: hsl(200,100%, 50%);
+    --primary-color-hover: hsl(200, 100%, 50%);
     --secondary-color-hover: hsl(0, 100%, 63%);
     --tertiary-color-hover: hsl(45, 90%, 40%);
     --accent-color-hover: hsl(140, 90%, 40%);
@@ -32,11 +32,11 @@ body{
     --secondary-text-color-hover: hsl(0, 0%, 55%);
 }
 
-.display-font{
+.display-font {
     font-family: 'Unbounded', cursive;
 }
 
-.body-container{
+.body-container {
     width: 100vw;
     height: 100vh;
     background-color: var(--background-color);
@@ -45,31 +45,34 @@ body{
     align-items: center;
 }
 
-.game-name{
+.game-name {
     font-family: 'Unbounded', cursive;
     color: var(--text-color);
     font-size: 90rem;
 }
 
-.choose-text{
+.choose-text {
     color: var(--text-color);
     font-size: 30rem;
     text-align: center;
 }
 
-.mark-container{
+.mark-container {
     width: auto;
 }
 
-.mark-buttons-container{
+.mark-buttons-container {
     display: flex;
     gap: 10px;
     padding-top: 40px;
 }
 
-.mark-buttons{
+.mark-buttons {
     flex: 1;
     height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     appearance: none;
     border: none;
     border-radius: 5px;
@@ -77,41 +80,42 @@ body{
     font-size: 25rem;
     font-weight: bold;
     cursor: pointer;
+    text-decoration: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease;
 }
 
-.mark-buttons:active{
+.mark-buttons:active {
     transform: scale(0.87);
 }
 
-#xBtn{
+#xBtn {
     background-color: var(--secondary-color);
 }
 
-#xBtn:hover{
+#xBtn:hover {
     background-color: var(--secondary-color-hover);
 }
 
-#oBtn{
+#oBtn {
     background-color: var(--primary-color);
 }
 
-#oBtn:hover{
+#oBtn:hover {
     background-color: var(--primary-color-hover);
 }
 
-.github-container{
+.github-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.github{
+.github {
     width: 30px;
 }
 
-.github-link{
+.github-link {
     text-decoration: none;
     color: var(--text-color);
     font-size: 20rem;
