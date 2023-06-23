@@ -4,12 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/c2ff6a5a2e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <title>TicTacToe | Gameboard</title>
 </head>
 <body>
     <div class="body-container">
-        
+        <div class="gameboard-container">
+            <div class="top">
+                <a href="index.html" id="btnExit" class="navigation-buttons">
+                    <div class="x"><i class="fa-solid fa-xmark"></i> Exit</div>
+                </a>
+                <div class="header-text">TicTacToe</div>
+                <div id="btnRestart" class="navigation-buttons">
+                    <i class="fa-solid fa-rotate-left"></i> Restart
+                </div>
+            </div>
+
+            <div class="gameboard">
+                <div class="gameboard-cell"><i class="fa-solid fa-xmark fa-2xl"></i></div>
+                <div class="gameboard-cell"><i class="fa-solid fa-xmark fa-2xl"></i></div>
+                <div class="gameboard-cell"><i class="fa-solid fa-xmark fa-2xl"></i></div>
+                <div class="gameboard-cell"><i class="fa-solid fa-o fa-2xl"></i></div>
+                <div class="gameboard-cell"><i class="fa-solid fa-o fa-2xl"></i></div>
+                <div class="gameboard-cell"><i class="fa-solid fa-o fa-2xl"></i></div>
+                <div class="gameboard-cell"><i class="fa-solid fa-xmark fa-2xl"></i></div>
+                <div class="gameboard-cell"><i class="fa-solid fa-xmark fa-2xl"></i></div>
+                <div class="gameboard-cell"><i class="fa-solid fa-xmark fa-2xl"></i></div>
+            </div>
+
+            <div class="score-container">
+                <div class="x-score scores">
+                    <div class="player">Player X</div>
+                    <div class="score">0</div>
+                </div>
+                <div class="o-score scores">
+                    <div class="player">Player O</div>
+                    <div class="score">0</div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
