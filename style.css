@@ -62,17 +62,13 @@ body {
     text-align: center;
 }
 
-.mark-container {
-    width: auto;
-}
-
-.mark-buttons-container {
+.mode-buttons-container {
     display: flex;
     gap: 25px;
     padding-top: 40px;
 }
 
-.mark-buttons {
+.mode-buttons {
     flex: 1;
     height: 50px;
     display: flex;
@@ -90,7 +86,7 @@ body {
     transition: all 0.2s ease;
 }
 
-.mark-buttons:hover {
+.mode-buttons:hover {
     transform: scale(1.1);
 }
 
@@ -108,6 +104,55 @@ body {
 
 #computerBtn:hover {
     background-color: var(--primary-color-hover);
+}
+
+.mark-buttons-container {
+    display: flex;
+    gap: 20px;
+}
+
+.mark-buttons {
+    flex: 1;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    appearance: none;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-size: 25rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.mark-buttons:hover {
+    border: solid 4px white;
+}
+
+#xBtn{
+    background-color: var(--secondary-color);
+}
+
+#oBtn{
+    background-color: var(--primary-color);
+}
+
+.player-name-input{
+    appearance: none;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: var(--background-color);
+    font-weight: bold;
+    font-size: 17rem;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .github-container {
@@ -161,9 +206,23 @@ body {
     position: absolute;
     color: var(--primary-color);
     font-size: 600rem;
-    bottom: 0;
+    bottom: 0;  
     left: -120px;
     transition: all 0.4s ease;
+}
+
+.x-mark3{
+    position: fixed;
+    color: var(--secondary-color);
+    font-size: 400rem;
+    top: 40px;
+}
+
+.o-mark3{
+    position: fixed;
+    color: var(--primary-color);
+    font-size: 400rem;
+    bottom: 0;
 }
 
 .x-mark1:hover{
@@ -243,7 +302,7 @@ body {
     border: none;
     border-radius: 5px;
     box-sizing: border-box;
-    padding: 10px 15px;
+    padding: 13px 15px;
     flex: 1;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.3);
     color: var(--text-color);   
@@ -446,7 +505,7 @@ body {
     .choose-text{
         font-size: 20rem;
     }
-    .mark-buttons{
+    .mode-buttons{
         font-size: 18rem;
     }
     .player-inputs{
@@ -461,10 +520,22 @@ body {
     .inputs{
         width: 100%;
     }
+    .github-link{
+        padding-top: 40px;
+    }
 }
 
 @media (min-width:768px) and  (max-width:1023px) {
-    .x-mark1, .x-mark2, .o-mark1, .o-mark2{
+    .x-mark3, .o-mark3{
         display: none;
     }
+    .x-mark1, .o-mark1, .x-mark2, .o-mark2{
+        font-size: 500rem;
+    }
 }
+
+    @media (min-width:1024px) {
+        .x-mark3, .o-mark3{
+            display: none;
+        }
+    }
