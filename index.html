@@ -14,10 +14,10 @@
     <div class="body-container">
         <div class="marks-container">
             <h1 class="game-name">TicTacToe</h1>
-            <h2 class="choose-text">Choose your mark :</h2>
+            <h2 class="choose-text">Choose playing mode :</h2>
             <div class="mark-buttons-container">
-                <a href="gameboard.html" id="xBtn" class="mark-buttons">X</a>
-                <a href="gameboard.html" id="oBtn" class="mark-buttons">O</a>
+                <button data-modal-target="#modal" id="pvpBtn" class="mark-buttons">VS Player</button>
+                <button id="computerBtn" class="mark-buttons">VS Computer</button>
             </div>
             <div class="github-container">
                 <a href="https://github.com/stefanbrkic1" class="github-link">
@@ -26,6 +26,25 @@
                 </a>
             </div>
         </div>
+        
+        <div id="modal" class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Player VS Player</div>
+                <button type="button" data-close-button id="btnClose" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" id="form">
+                    <div class="player-inputs">
+                        <input type="text" placeholder="(X) Player name..." id="xInput" class="x-input inputs" name="x-player" required>
+                        <input type="text" placeholder="(O) Player name..." id="oInput" class="o-input inputs" name="o-player" required>
+                    </div>
+                    <div class="btn-play-container">
+                        <button type="submit" id="btnPlay" class="btn-play">PLAY</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="overlay"></div>
         <i class="fa-solid fa-xmark fa-2xl x-mark1"></i>
         <i class="fa-solid fa-o fa-2xl o-mark1"></i>
         <i class="fa-solid fa-xmark fa-2xl x-mark2"></i>
