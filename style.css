@@ -132,6 +132,10 @@ body {
     border: solid 4px white;
 }
 
+.selectedMark{
+    border: solid 4px white;
+}
+
 #xBtn {
     background-color: var(--secondary-color);
 }
