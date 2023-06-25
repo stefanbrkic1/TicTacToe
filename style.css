@@ -159,6 +159,11 @@ body {
     margin-bottom: 20px;
 }
 
+input{
+    -webkit-autocomplete: off;
+    -moz-autocomplete: off;
+  }
+
 .github-container {
     display: flex;
     justify-content: center;
