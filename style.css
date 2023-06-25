@@ -475,6 +475,14 @@ input{
     transform: scale(0.87);
 }
 
+.x-hover:hover {
+    border: 5px solid var(--secondary-color);
+}
+
+.o-hover:hover {
+    border: 5px solid var(--primary-color);
+}
+
 .score-container {
     display: flex;
 }
@@ -510,7 +518,9 @@ input{
 
 .unclickable {
     pointer-events: none;
-  }
+}
+
+
 
 
 /*Media Queries*/

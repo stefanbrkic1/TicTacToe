@@ -47,19 +47,46 @@ const gameboardCellHandler = (() => {
         cell.addEventListener('click', (e) => {
             const target = e.target;  
             if(target.classList.contains('disabled-cell')) {
-
+                
+                
             }
             else if(turn === 'X'){
                 cell.innerHTML='<i class="fa-solid fa-xmark fa-2xl red-mark unclickable"></i>'
                 target.classList.add('disabled-cell')
+                target.classList.remove('cell-hover')
                 turn = 'O'
+
+                cells.forEach(cell => {
+                    if(cell.classList.contains('disabled-cell')){
+
+                    }
+                    else{
+                        cell.classList.remove('x-hover')
+                        cell.classList.add('o-hover')
+                    }
+                })
+                
             }
             else{
                 cell.innerHTML='<i class="fa-solid fa-o fa-2xl blue-mark unclickable"></i>'
                 target.classList.add('disabled-cell')
+                target.classList.remove('cell-hover')
                 turn = 'X'
-            }
 
+                cells.forEach(cell => {
+                    if(cell.classList.contains('disabled-cell')){
+
+                    }
+                    else{
+                        cell.classList.remove('o-hover')
+                        cell.classList.add('x-hover')
+                    }
+                })
+            }
         })
     })
-})()
+
+    return { turn, cells }
+})()    
+
+
