@@ -39,3 +39,27 @@ const setScoreTableNames = (() => {
 })()
 
 
+const gameboardCellHandler = (() => {
+    const cells = document.querySelectorAll('.gameboard-cell')
+    let turn = 'X'
+
+    cells.forEach((cell, index) => {
+        cell.addEventListener('click', (e) => {
+            const target = e.target;  
+            if(target.classList.contains('disabled-cell')) {
+
+            }
+            else if(turn === 'X'){
+                cell.innerHTML='<i class="fa-solid fa-xmark fa-2xl red-mark unclickable"></i>'
+                target.classList.add('disabled-cell')
+                turn = 'O'
+            }
+            else{
+                cell.innerHTML='<i class="fa-solid fa-o fa-2xl blue-mark unclickable"></i>'
+                target.classList.add('disabled-cell')
+                turn = 'X'
+            }
+
+        })
+    })
+})()

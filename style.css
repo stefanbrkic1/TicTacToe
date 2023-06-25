@@ -250,6 +250,14 @@ input{
     transform: scale(1.2);
 }
 
+.red-mark{
+    color: var(--secondary-color);
+}
+
+.blue-mark{
+    color: var(--primary-color);
+}
+
 .modal {
     position: fixed;
     top: 50%;
@@ -500,6 +508,9 @@ input{
     font-family: 'Unbounded', cursive;
 }
 
+.unclickable {
+    pointer-events: none;
+  }
 
 
 /*Media Queries*/
