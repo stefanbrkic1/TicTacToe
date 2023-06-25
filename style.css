@@ -181,7 +181,7 @@ input{
     display: flex;
     align-items: center;
     gap: 10px;
-    padding-top: 70px;
+    margin-top: 70px;
 }
 
 .x-mark1 {
