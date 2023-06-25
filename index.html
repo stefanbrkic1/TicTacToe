@@ -36,9 +36,9 @@
                 <form action="" method="post" id="formPvp">
                     <div class="player-inputs">
                         <input type="text" placeholder="(X) Player name..." id="xInput" class="x-input inputs"
-                            name="x-player" required>
+                            name="x-player" required autocomplete="off">
                         <input type="text" placeholder="(O) Player name..." id="oInput" class="o-input inputs"
-                            name="o-player" required>
+                            name="o-player" required  autocomplete="off">
                     </div>
                     <div class="btn-play-container">
                         <button type="submit" id="btnPlayPvp" class="btn-play">PLAY</button>
@@ -55,7 +55,7 @@
             <div class="modal-body">
                 <form action="" method="post" id="formComputer">
                     <input type="text" id="playerNameInput" class="player-name-input" placeholder="Your name..."
-                        required>
+                        required autocomplete="off">
                     <div class="mark-buttons-container">
                         <button type="button" id="xBtn" class="mark-buttons">X</button>
                         <button type="button" id="oBtn" class="mark-buttons">O</button>
