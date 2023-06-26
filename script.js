@@ -21,7 +21,7 @@ const modalHandler = (() => {
     overlay.addEventListener('click', () => {
         const modals = document.querySelectorAll('.modal.active')
         modals.forEach(modal => {
-            _closeModalcloseModal(modal)
+            _closeModal(modal)
         })
     })
 

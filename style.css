@@ -339,21 +339,26 @@ input{
 }
 
 .btn-play {
-    padding: 10px 55px;
-    border-radius: 5px;
-    border: none;
+    flex: 1;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     appearance: none;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-size: 25rem;
     font-weight: bold;
-    color: white;
-    background-color: var(--accent-color-hover);
-    font-size: 20rem;
     cursor: pointer;
+    text-decoration: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease;
+    background-color: var(--accent-color-hover);
 }
 
-.btn-play:hover {
-    transform: scale(1.1);
+.btn-play:hover{
+    transform: scale(1.03);
 }
 
 .x-input {
@@ -520,7 +525,44 @@ input{
     pointer-events: none;
 }
 
+#winnerBtn{
+    display: none;
+}
 
+#playAgainBtn{
+    background-color: var(--accent-color-hover);
+}
+
+#exitBtnModal{
+    background-color: var(--tertiary-color);
+}
+
+.winner-display-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.winner-display{
+    color: var(--text-color);
+    font-size: 20rem;
+    font-weight: bold;
+}
+
+#winnerDisplay{
+    font-size: 55rem;
+    font-weight: bold;
+}
+
+.x-winner{
+    color: var(--secondary-color);
+}
+
+.o-winner{
+    color: var(--primary-color);
+}
 
 
 /*Media Queries*/
@@ -540,10 +582,6 @@ input{
 
     .choose-text {
         font-size: 20rem;
-    }
-
-    .mode-buttons {
-        font-size: 18rem;
     }
 
     .player-inputs {
