@@ -601,7 +601,50 @@ input{
     }
 
     .github-link {
-        padding-top: 40px;
+        margin-top: 30px;
+    }
+    .gameboard{
+        width: 300px;
+        height: 300px;
+    }
+    .gameboard-container{
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+    }
+    .score-container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .x-score{
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 0px;
+    }
+    .o-score{
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-top-right-radius: 0px;
+    }
+    .scores{
+        width: 100%;
+        padding: 1px 15px;
+        align-items: center;
+        font-size: 23rem;
+    }
+    .navigation-buttons{
+        width: 100%;
+    }
+    .top{
+        gap: 10px;
+    }
+    .mode-buttons{
+        font-size: 17rem;
+    }
+    .header-text{
+        display: none;
     }
 }
 
