@@ -568,13 +568,12 @@ input{
     display: none;
 }
 
-#displayTurn{
+#displayTurn, #displayTurnBigScreen{
     color: var(--text-color);
     font-weight: bold;
     text-align: center;
     font-size: 25rem;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 7px 15px 7px 15px;
 }
 
 .x-turn{
@@ -664,6 +663,9 @@ input{
         font-size: 17rem;
     }
     .header-text{
+        display: none;
+    }
+    #displayTurnBigScreen{
         display: none;
     }
 }

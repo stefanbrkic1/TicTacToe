@@ -38,6 +38,7 @@ const setScoreTableNames = (() => {
 
 const gameboardCellHandler = (() => {
     const displayTurn = document.getElementById('displayTurn')
+    const displayTurnBigScreen = document.getElementById('displayTurnBigScreen')
     const cells = document.querySelectorAll('.gameboard-cell');
     let gameboardArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     let turn = 'X';
@@ -45,7 +46,8 @@ const gameboardCellHandler = (() => {
     let scoreX = 0
     let scoreO = 0
 
-    displayTurn.textContent = `${gameData.playerX.name}'s TURN`    
+    displayTurn.textContent = `${gameData.playerX.name}'s TURN`   
+    displayTurnBigScreen.textContent = `${gameData.playerX.name}'s TURN`   
 
     cells.forEach((cell, index) => {
         cell.addEventListener('click', (e) => {
@@ -63,6 +65,9 @@ const gameboardCellHandler = (() => {
                 displayTurn.classList.remove('x-turn')
                 displayTurn.classList.add('o-turn')
                 displayTurn.textContent = `${gameData.playerO.name}'s TURN`
+                displayTurnBigScreen.classList.remove('x-turn')
+                displayTurnBigScreen.classList.add('o-turn')
+                displayTurnBigScreen.textContent = `${gameData.playerO.name}'s TURN`
                 cells.forEach(cell => {
                     if (!cell.classList.contains('disabled-cell')) {
                         cell.classList.remove('x-hover');
@@ -78,6 +83,9 @@ const gameboardCellHandler = (() => {
                 displayTurn.classList.remove('o-turn')
                 displayTurn.classList.add('x-turn')
                 displayTurn.textContent = `${gameData.playerX.name}'s TURN`    
+                displayTurnBigScreen.classList.remove('o-turn')
+                displayTurnBigScreen.classList.add('x-turn')
+                displayTurnBigScreen.textContent = `${gameData.playerX.name}'s TURN`    
                 cells.forEach(cell => {
                     if (!cell.classList.contains('disabled-cell')) {
                         cell.classList.remove('o-hover');
@@ -149,16 +157,49 @@ const gameboardCellHandler = (() => {
 })();
 
 const playAgain = (() => {
+    const displayTurn = document.getElementById('displayTurn')
+    const displayTurnBigScreen = document.getElementById('displayTurnBigScreen')
     const playAgainBtn = document.getElementById('playAgainBtn')
     const btnModalClose = document.getElementById('btnWinnerClose')
 
     playAgainBtn.addEventListener('click', () => {
         gameboardCellHandler.gameboardArray = [0, 0, 0, 0, 0 , 0, 0, 0, 0]
         gameboardCellHandler.winner = '';
-        gameboardCellHandler.cells.forEach(cell => {
-            cell.classList.remove('disabled-cell')
-            cell.innerHTML = ''
-        })
+        
+        if(gameboardCellHandler.turn === 'X'){
+            displayTurn.classList.remove('x-turn')
+            displayTurn.classList.add('o-turn')
+            displayTurn.textContent = `${gameData.playerO.name}'s TURN`
+            displayTurnBigScreen.classList.remove('x-turn')
+            displayTurnBigScreen.classList.add('o-turn')
+            displayTurnBigScreen.textContent = `${gameData.playerO.name}'s TURN`
+            gameboardCellHandler.cells.forEach(cell => {
+                cell.classList.remove('disabled-cell')
+                cell.innerHTML = ''
+                if (!cell.classList.contains('disabled-cell')) {
+                    cell.classList.remove('x-hover');
+                    cell.classList.add('o-hover');
+                }
+                gameboardCellHandler.turn = 'O'
+            })
+        }
+        else{
+            displayTurn.classList.remove('o-turn')
+            displayTurn.classList.add('x-turn')
+            displayTurn.textContent = `${gameData.playerX.name}'s TURN`    
+            displayTurnBigScreen.classList.remove('o-turn')
+            displayTurnBigScreen.classList.add('x-turn')
+            displayTurnBigScreen.textContent = `${gameData.playerX.name}'s TURN`   
+            gameboardCellHandler.cells.forEach(cell => {
+                cell.classList.remove('disabled-cell')
+                cell.innerHTML = ''
+                if (!cell.classList.contains('disabled-cell')) {
+                    cell.classList.remove('x-hover');
+                    cell.classList.add('o-hover');
+                }            
+                gameboardCellHandler.turn = 'X'
+            })
+        }
         btnModalClose.click()
     })
 })()
