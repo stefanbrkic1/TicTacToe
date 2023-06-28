@@ -117,6 +117,7 @@ const gameboardCellHandler = (() => {
             const scoreXDisplay = document.getElementById('scoreX')
             scoreXDisplay.textContent = gameboardCellHandler.scoreX
             winnerDisplay.textContent = `${gameData.playerX.name}`
+            winnerDisplay.classList.remove('o-winner')
             winnerDisplay.classList.add('x-winner')
           }
           else{
@@ -124,6 +125,7 @@ const gameboardCellHandler = (() => {
             const scoreODisplay = document.getElementById('scoreO')
             scoreODisplay.textContent = gameboardCellHandler.scoreO
             winnerDisplay.textContent = `${gameData.playerO.name}` 
+            winnerDisplay.classList.remove('x-winner')
             winnerDisplay.classList.add('o-winner')
           }
         }
