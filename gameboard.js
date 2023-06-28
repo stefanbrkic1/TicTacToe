@@ -216,6 +216,7 @@ const restartGame = (() => {
         gameboardCellHandler.gameboardArray = [0, 0, 0, 0, 0 , 0, 0, 0, 0]
         gameboardCellHandler.winner = '';
         gameboardCellHandler.turn = 'X'
+        console.log(gameboardCellHandler.turn)
 
         displayTurn.classList.remove('o-turn')
             displayTurn.classList.add('x-turn')
