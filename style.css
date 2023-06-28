@@ -568,6 +568,22 @@ input{
     display: none;
 }
 
+#displayTurn{
+    color: var(--text-color);
+    font-weight: bold;
+    text-align: center;
+    font-size: 25rem;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.x-turn{
+    background-color: var(--secondary-color);
+}
+
+.o-turn{
+    background-color: var(--primary-color);
+}
 
 /*Media Queries*/
 
@@ -608,8 +624,8 @@ input{
         margin-top: 30px;
     }
     .gameboard{
-        width: 300px;
-        height: 300px;
+        width: 320px;
+        height: 320px;
     }
     .gameboard-container{
         display: flex;
@@ -671,6 +687,9 @@ input{
 
     .x-mark3,
     .o-mark3 {
+        display: none;
+    }
+    #displayTurn{
         display: none;
     }
 }

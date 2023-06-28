@@ -37,12 +37,15 @@ const setScoreTableNames = (() => {
 })();
 
 const gameboardCellHandler = (() => {
+    const displayTurn = document.getElementById('displayTurn')
     const cells = document.querySelectorAll('.gameboard-cell');
     let gameboardArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     let turn = 'X';
     let winner = '';
     let scoreX = 0
     let scoreO = 0
+
+    displayTurn.textContent = `${gameData.playerX.name}'s TURN`    
 
     cells.forEach((cell, index) => {
         cell.addEventListener('click', (e) => {
@@ -57,6 +60,9 @@ const gameboardCellHandler = (() => {
                 target.classList.remove('x-hover');
                 gameboardCellHandler.gameboardArray[index] = 'X';
                 turn = 'O';
+                displayTurn.classList.remove('x-turn')
+                displayTurn.classList.add('o-turn')
+                displayTurn.textContent = `${gameData.playerO.name}'s TURN`
                 cells.forEach(cell => {
                     if (!cell.classList.contains('disabled-cell')) {
                         cell.classList.remove('x-hover');
@@ -69,6 +75,9 @@ const gameboardCellHandler = (() => {
                 target.classList.remove('o-hover');
                 gameboardCellHandler.gameboardArray[index] = 'O';
                 turn = 'X';
+                displayTurn.classList.remove('o-turn')
+                displayTurn.classList.add('x-turn')
+                displayTurn.textContent = `${gameData.playerX.name}'s TURN`    
                 cells.forEach(cell => {
                     if (!cell.classList.contains('disabled-cell')) {
                         cell.classList.remove('o-hover');
