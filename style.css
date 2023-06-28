@@ -564,6 +564,10 @@ input{
     color: var(--primary-color);
 }
 
+#btnWinnerClose{
+    display: none;
+}
+
 
 /*Media Queries*/
 

@@ -54,7 +54,7 @@ const gameboardCellHandler = (() => {
             if (turn === 'X') {
                 cell.innerHTML = '<i class="fa-solid fa-xmark fa-2xl red-mark unclickable"></i>';
                 target.classList.add('disabled-cell');
-                target.classList.remove('cell-hover');
+                target.classList.remove('x-hover');
                 gameboardCellHandler.gameboardArray[index] = 'X';
                 turn = 'O';
                 cells.forEach(cell => {
@@ -66,7 +66,7 @@ const gameboardCellHandler = (() => {
             } else {
                 cell.innerHTML = '<i class="fa-solid fa-o fa-2xl blue-mark unclickable"></i>';
                 target.classList.add('disabled-cell');
-                target.classList.remove('cell-hover');
+                target.classList.remove('o-hover');
                 gameboardCellHandler.gameboardArray[index] = 'O';
                 turn = 'X';
                 cells.forEach(cell => {
@@ -102,12 +102,15 @@ const gameboardCellHandler = (() => {
             gameboardCellHandler.gameboardArray[c] === firstValue
           );
         });
+
+        const openWinnerModal = document.getElementById('winnerBtn');
+        const winnerDisplay = document.getElementById('winnerDisplay');
+        const markWinnerDisplay = document.getElementById('markWinnerDisplay')
       
         if (hasWinner) {
           winner = turn === 'X' ? 'O' : 'X';
-          const openWinnerModal = document.getElementById('winnerBtn');
+          markWinnerDisplay.textContent = 'WINNER IS'
           openWinnerModal.click();
-          const winnerDisplay = document.getElementById('winnerDisplay');
 
           if(winner === 'X'){
             gameboardCellHandler.scoreX ++
@@ -124,6 +127,11 @@ const gameboardCellHandler = (() => {
             winnerDisplay.classList.add('o-winner')
           }
         }
+        else if(!gameboardCellHandler.gameboardArray.includes(0)){
+            openWinnerModal.click()
+            winnerDisplay.textContent = `It's a tie` 
+            markWinnerDisplay.textContent = 'NO WINNER'
+        }
       };
 
     return { winner, turn, gameboardArray, cells, scoreX, scoreO };
@@ -131,7 +139,7 @@ const gameboardCellHandler = (() => {
 
 const playAgain = (() => {
     const playAgainBtn = document.getElementById('playAgainBtn')
-    const btnModalClose = document.getElementById('btnClose')
+    const btnModalClose = document.getElementById('btnWinnerClose')
 
     playAgainBtn.addEventListener('click', () => {
         gameboardCellHandler.gameboardArray = [0, 0, 0, 0, 0 , 0, 0, 0, 0]
