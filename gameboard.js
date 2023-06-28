@@ -149,6 +149,8 @@ const gameboardCellHandler = (() => {
         else if(!gameboardCellHandler.gameboardArray.includes(0) && !hasWinner){
             openWinnerModal.click()
             winnerDisplay.textContent = `It's a tie` 
+            winnerDisplay.classList.remove('x-winner')
+            winnerDisplay.classList.remove('o-winner')
             markWinnerDisplay.textContent = 'NO WINNER'
         }
       };
