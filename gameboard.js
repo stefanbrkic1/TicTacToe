@@ -130,7 +130,7 @@ const gameboardCellHandler = (() => {
           openWinnerModal.click();
 
           if(winner === 'X'){
-            gameboardCellHandler.scoreX ++
+            gameboardCellHandler.scoreX++
             const scoreXDisplay = document.getElementById('scoreX')
             scoreXDisplay.textContent = gameboardCellHandler.scoreX
             winnerDisplay.textContent = `${gameData.playerX.name}`
@@ -138,7 +138,7 @@ const gameboardCellHandler = (() => {
             winnerDisplay.classList.add('x-winner')
           }
           else{
-            gameboardCellHandler.scoreO ++
+            gameboardCellHandler.scoreO++
             const scoreODisplay = document.getElementById('scoreO')
             scoreODisplay.textContent = gameboardCellHandler.scoreO
             winnerDisplay.textContent = `${gameData.playerO.name}` 
@@ -146,7 +146,7 @@ const gameboardCellHandler = (() => {
             winnerDisplay.classList.add('o-winner')
           }
         }
-        else if(!gameboardCellHandler.gameboardArray.includes(0)){
+        else if(!gameboardCellHandler.gameboardArray.includes(0) && !hasWinner){
             openWinnerModal.click()
             winnerDisplay.textContent = `It's a tie` 
             markWinnerDisplay.textContent = 'NO WINNER'
@@ -173,6 +173,7 @@ const playAgain = (() => {
             displayTurnBigScreen.classList.remove('x-turn')
             displayTurnBigScreen.classList.add('o-turn')
             displayTurnBigScreen.textContent = `${gameData.playerO.name}'s TURN`
+
             gameboardCellHandler.cells.forEach(cell => {
                 cell.classList.remove('disabled-cell')
                 cell.innerHTML = ''
@@ -190,12 +191,13 @@ const playAgain = (() => {
             displayTurnBigScreen.classList.remove('o-turn')
             displayTurnBigScreen.classList.add('x-turn')
             displayTurnBigScreen.textContent = `${gameData.playerX.name}'s TURN`   
+
             gameboardCellHandler.cells.forEach(cell => {
                 cell.classList.remove('disabled-cell')
                 cell.innerHTML = ''
                 if (!cell.classList.contains('disabled-cell')) {
-                    cell.classList.remove('x-hover');
-                    cell.classList.add('o-hover');
+                    cell.classList.remove('o-hover');
+                    cell.classList.add('x-hover');
                 }            
                 gameboardCellHandler.turn = 'X'
             })
@@ -209,9 +211,17 @@ const restartGame = (() => {
     const scoreODisplay = document.getElementById('scoreO')
     const btnRestart = document.getElementById('btnRestart')
     btnRestart.addEventListener('click', () => {
-        gameboardCellHandler.turn = 'X'
         gameboardCellHandler.gameboardArray = [0, 0, 0, 0, 0 , 0, 0, 0, 0]
         gameboardCellHandler.winner = '';
+        gameboardCellHandler.turn = 'X'
+
+        displayTurn.classList.remove('o-turn')
+            displayTurn.classList.add('x-turn')
+            displayTurn.textContent = `${gameData.playerX.name}'s TURN`    
+            displayTurnBigScreen.classList.remove('o-turn')
+            displayTurnBigScreen.classList.add('x-turn')
+            displayTurnBigScreen.textContent = `${gameData.playerX.name}'s TURN`   
+         
         gameboardCellHandler.cells.forEach(cell => {
             cell.classList.remove('disabled-cell')
             cell.innerHTML = ''
@@ -219,6 +229,8 @@ const restartGame = (() => {
             gameboardCellHandler.scoreO = 0
             scoreXDisplay.textContent = 0
             scoreODisplay.textContent = 0
+            cell.classList.remove('o-hover');
+            cell.classList.add('x-hover');
         })
     })
 })()
