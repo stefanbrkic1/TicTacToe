@@ -41,6 +41,8 @@ const gameboardCellHandler = (() => {
     let gameboardArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     let turn = 'X';
     let winner = '';
+    let scoreX = 0
+    let scoreO = 0
 
     cells.forEach((cell, index) => {
         cell.addEventListener('click', (e) => {
@@ -53,7 +55,7 @@ const gameboardCellHandler = (() => {
                 cell.innerHTML = '<i class="fa-solid fa-xmark fa-2xl red-mark unclickable"></i>';
                 target.classList.add('disabled-cell');
                 target.classList.remove('cell-hover');
-                gameboardArray[index] = 'X';
+                gameboardCellHandler.gameboardArray[index] = 'X';
                 turn = 'O';
                 cells.forEach(cell => {
                     if (!cell.classList.contains('disabled-cell')) {
@@ -65,7 +67,7 @@ const gameboardCellHandler = (() => {
                 cell.innerHTML = '<i class="fa-solid fa-o fa-2xl blue-mark unclickable"></i>';
                 target.classList.add('disabled-cell');
                 target.classList.remove('cell-hover');
-                gameboardArray[index] = 'O';
+                gameboardCellHandler.gameboardArray[index] = 'O';
                 turn = 'X';
                 cells.forEach(cell => {
                     if (!cell.classList.contains('disabled-cell')) {
@@ -91,15 +93,13 @@ const gameboardCellHandler = (() => {
           [2, 4, 6]
         ];
       
-        const gameboardArray = gameboardCellHandler.gameboardArray;
-      
         const hasWinner = winningCombinations.some(combination => {
           const [a, b, c] = combination;
-          const firstValue = gameboardArray[a];
+          const firstValue = gameboardCellHandler.gameboardArray[a];
           return (
             firstValue !== 0 &&
-            gameboardArray[b] === firstValue &&
-            gameboardArray[c] === firstValue
+            gameboardCellHandler.gameboardArray[b] === firstValue &&
+            gameboardCellHandler.gameboardArray[c] === firstValue
           );
         });
       
@@ -108,21 +108,60 @@ const gameboardCellHandler = (() => {
           const openWinnerModal = document.getElementById('winnerBtn');
           openWinnerModal.click();
           const winnerDisplay = document.getElementById('winnerDisplay');
-          const markWinnerDisplay = document.getElementById('markWinnerDisplay');
 
           if(winner === 'X'){
+            gameboardCellHandler.scoreX ++
+            const scoreXDisplay = document.getElementById('scoreX')
+            scoreXDisplay.textContent = gameboardCellHandler.scoreX
             winnerDisplay.textContent = `${gameData.playerX.name}`
             winnerDisplay.classList.add('x-winner')
           }
           else{
+            gameboardCellHandler.scoreO ++
+            const scoreODisplay = document.getElementById('scoreO')
+            scoreODisplay.textContent = gameboardCellHandler.scoreO
             winnerDisplay.textContent = `${gameData.playerO.name}` 
             winnerDisplay.classList.add('o-winner')
           }
         }
       };
 
-    return { winner, turn, gameboardArray, cells };
+    return { winner, turn, gameboardArray, cells, scoreX, scoreO };
 })();
+
+const playAgain = (() => {
+    const playAgainBtn = document.getElementById('playAgainBtn')
+    const btnModalClose = document.getElementById('btnClose')
+
+    playAgainBtn.addEventListener('click', () => {
+        gameboardCellHandler.gameboardArray = [0, 0, 0, 0, 0 , 0, 0, 0, 0]
+        gameboardCellHandler.winner = '';
+        gameboardCellHandler.cells.forEach(cell => {
+            cell.classList.remove('disabled-cell')
+            cell.innerHTML = ''
+        })
+        btnModalClose.click()
+    })
+})()
+
+const restartGame = (() => {
+    const scoreXDisplay = document.getElementById('scoreX')
+    const scoreODisplay = document.getElementById('scoreO')
+    const btnRestart = document.getElementById('btnRestart')
+    btnRestart.addEventListener('click', () => {
+        gameboardCellHandler.turn = 'X'
+        gameboardCellHandler.gameboardArray = [0, 0, 0, 0, 0 , 0, 0, 0, 0]
+        gameboardCellHandler.winner = '';
+        gameboardCellHandler.cells.forEach(cell => {
+            cell.classList.remove('disabled-cell')
+            cell.innerHTML = ''
+            gameboardCellHandler.scoreX = 0
+            gameboardCellHandler.scoreO = 0
+            scoreXDisplay.textContent = 0
+            scoreODisplay.textContent = 0
+        })
+    })
+})()
 
 const modalHandler = (() => {
     const openModalButtons = document.querySelectorAll('[data-modal-target]');

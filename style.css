@@ -498,7 +498,7 @@ input{
     box-sizing: border-box;
     padding: 20px;
     color: var(--text-color);
-    font-size: 20rem;
+    font-size: 30rem;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
