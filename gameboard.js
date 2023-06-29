@@ -286,8 +286,3 @@ const modalHandler = (() => {
         overlay.classList.remove('active');
     }
 })();
-
-
-document.addEventListener('click', ()=>{
-    console.log(gameboardCellHandler.cells)
-})
