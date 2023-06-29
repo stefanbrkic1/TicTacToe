@@ -183,10 +183,10 @@ const playAgain = (() => {
                     cell.classList.remove('x-hover');
                     cell.classList.add('o-hover');
                 }
-                gameboardCellHandler.turn = 'O'
             })
+            gameboardCellHandler.turn = 'O' 
         }
-        else{
+        else if(gameboardCellHandler.turn === 'O'){
             displayTurn.classList.remove('o-turn')
             displayTurn.classList.add('x-turn')
             displayTurn.textContent = `${gameData.playerX.name}'s TURN`    
@@ -201,29 +201,33 @@ const playAgain = (() => {
                     cell.classList.remove('o-hover');
                     cell.classList.add('x-hover');
                 }            
-                gameboardCellHandler.turn = 'X'
             })
+            gameboardCellHandler.turn = 'X' 
         }
         btnModalClose.click()
     })
 })()
 
 const restartGame = (() => {
+    let hoverTurn = ''
     const scoreXDisplay = document.getElementById('scoreX')
     const scoreODisplay = document.getElementById('scoreO')
     const btnRestart = document.getElementById('btnRestart')
     btnRestart.addEventListener('click', () => {
         gameboardCellHandler.gameboardArray = [0, 0, 0, 0, 0 , 0, 0, 0, 0]
         gameboardCellHandler.winner = '';
-        gameboardCellHandler.turn = 'X'
-        console.log(gameboardCellHandler.turn)
 
-        displayTurn.classList.remove('o-turn')
-            displayTurn.classList.add('x-turn')
-            displayTurn.textContent = `${gameData.playerX.name}'s TURN`    
-            displayTurnBigScreen.classList.remove('o-turn')
-            displayTurnBigScreen.classList.add('x-turn')
-            displayTurnBigScreen.textContent = `${gameData.playerX.name}'s TURN`   
+        const cellsArray = [...gameboardCellHandler.cells];
+        const checkTurn = cellsArray.some(cell => {
+            return cell.classList.contains('x-hover');
+        });
+
+        if(checkTurn === true){
+            hoverTurn = 'X'
+        }
+        else{
+            hoverTurn = 'O'
+        }
          
         gameboardCellHandler.cells.forEach(cell => {
             cell.classList.remove('disabled-cell')
@@ -232,8 +236,13 @@ const restartGame = (() => {
             gameboardCellHandler.scoreO = 0
             scoreXDisplay.textContent = 0
             scoreODisplay.textContent = 0
-            cell.classList.remove('o-hover');
-            cell.classList.add('x-hover');
+
+            if(hoverTurn === 'X'){
+                cell.classList.add('x-hover')
+            }
+            else{
+                cell.classList.add('o-hover')
+            }
         })
     })
 })()
@@ -277,3 +286,8 @@ const modalHandler = (() => {
         overlay.classList.remove('active');
     }
 })();
+
+
+document.addEventListener('click', ()=>{
+    console.log(gameboardCellHandler.cells)
+})
