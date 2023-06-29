@@ -187,7 +187,7 @@ input{
 .x-mark1 {
     position: absolute;
     color: var(--secondary-color);
-    font-size: 600rem;
+    font-size: 650rem;
     top: 90px;
     left: -120px;
     transition: all 0.4s ease;
@@ -196,7 +196,7 @@ input{
 .o-mark1 {
     position: absolute;
     color: var(--primary-color);
-    font-size: 700rem;
+    font-size: 650rem;
     bottom: 0;
     right: -120px;
     transition: all 0.4s ease;
@@ -205,7 +205,7 @@ input{
 .x-mark2 {
     position: absolute;
     color: var(--secondary-color);
-    font-size: 700rem;
+    font-size: 650rem;
     top: 90px;
     right: -120px;
     transition: all 0.4s ease;
@@ -214,7 +214,7 @@ input{
 .o-mark2 {
     position: absolute;
     color: var(--primary-color);
-    font-size: 600rem;
+    font-size: 650rem;
     bottom: 0;
     left: -120px;
     transition: all 0.4s ease;
