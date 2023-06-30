@@ -26,13 +26,8 @@ const setScoreTableNames = (() => {
         playerXScoreName.textContent = gameData.playerX.name;
         playerOScoreName.textContent = gameData.playerO.name;
     } else {
-        if (gameData.player.mark === 'O') {
-            playerXScoreName.textContent = 'Computer';
-            playerOScoreName.textContent = gameData.player.name;
-        } else {
             playerXScoreName.textContent = gameData.player.name;
             playerOScoreName.textContent = 'Computer';
-        }
     }
 })();
 

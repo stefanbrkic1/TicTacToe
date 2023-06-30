@@ -43,33 +43,6 @@ const modalHandler = (() => {
     }
 })()
 
-
-const markButtonsBehavior = (() => {
-    const xMarkButton = document.getElementById('xBtn')
-    const oMarkButton = document.getElementById('oBtn')
-
-    xMarkButton.addEventListener('click', () => {
-        if (xMarkButton.classList.contains('selectedMark')) {
-
-        }
-        else {
-            xMarkButton.classList.add('selectedMark')
-            oMarkButton.classList.remove('selectedMark')
-        }
-    })
-
-    oMarkButton.addEventListener('click', () => {
-        if (oMarkButton.classList.contains('selectedMark')) {
-
-        }
-        else {
-            oMarkButton.classList.add('selectedMark')
-            xMarkButton.classList.remove('selectedMark')
-        }
-    })
-})()
-
-
 const gameMode = (() => {
     const formPvp = document.getElementById('formPvp')
     const formComputer = document.getElementById('formComputer')
@@ -121,18 +94,7 @@ const gamePlayers = (() => {
         e.preventDefault();
         const playerName = document.getElementById('playerNameInput').value;
     
-        let playerMark;
-    
-        const getPlayerMark = () => {
-            const xMarkButton = document.getElementById('xBtn');
-            if (xMarkButton.classList.contains('selectedMark')) {
-                playerMark = 'X';
-            } else {
-                playerMark = 'O';
-            }
-        };
-    
-        getPlayerMark();
+        let playerMark = 'X'
     
         const player = { name: playerName, mark: playerMark };
         const url = `gameboard.html?mode=vsComputer&player=${encodeURIComponent(JSON.stringify(player))}`;
