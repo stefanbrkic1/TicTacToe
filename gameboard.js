@@ -129,11 +129,16 @@ const gameboardCellHandler = (() => {
                 markWinnerDisplay.textContent = 'NO WINNER'
             }
         }
-
 }
 
+const removeWinner = (() => {
+    const playAgainBtn = document.getElementById('playAgainBtn')
+    playAgainBtn.addEventListener('click', () => {
+        winner = ''
+    })
+})()
+
 const performComputerTurn = () => {
-    console.log('i was inovked')
     if (winner === 'player' || winner === 'computer') {
         return; // Stop if there is already a winner
       }
@@ -277,7 +282,6 @@ const playAgain = (() => {
     const btnModalClose = document.getElementById('btnWinnerClose')
 
     playAgainBtn.addEventListener('click', () => {
-        gameboardCellHandler.performComputerTurn();
         gameboardCellHandler.gameboardArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         gameboardCellHandler.winner = '';
 
@@ -292,12 +296,22 @@ const playAgain = (() => {
             gameboardCellHandler.cells.forEach(cell => {
                 cell.classList.remove('disabled-cell')
                 cell.innerHTML = ''
-                if (!cell.classList.contains('disabled-cell')) {
-                    cell.classList.remove('x-hover');
-                    cell.classList.add('o-hover');
+                if(gameData.mode === 'pvp'){
+                    if (!cell.classList.contains('disabled-cell')) {
+                        cell.classList.remove('x-hover');
+                        cell.classList.add('o-hover');
+                    }
                 }
+                else{
+                    if (!cell.classList.contains('disabled-cell')) {
+                        cell.classList.remove('x-hover');
+                }
+            }
             })
-            gameData.mode === 'pvp' ? gameboardCellHandler.turn = 'O' : gameboardCellHandler.turn = 'Computer' 
+            gameData.mode === 'vsComputer' ? gameboardCellHandler.turn = 'computer' : gameboardCellHandler.turn = 'O'
+            setTimeout(() => {
+                gameboardCellHandler.performComputerTurn();
+            }, 1500) 
         }
         else if (gameboardCellHandler.turn === 'O' || gameboardCellHandler.turn === 'computer') {
             displayTurn.classList.remove('o-turn')
@@ -315,7 +329,7 @@ const playAgain = (() => {
                     cell.classList.add('x-hover');
                 }
             })
-            gameData.mode === 'vsComputer' ? gameboardCellHandler.turn = 'X' : gameboardCellHandler.turn = 'player' 
+            gameData.mode === 'vsComputer' ? gameboardCellHandler.turn = 'player' : gameboardCellHandler.turn = 'X' 
                 
         }
         btnModalClose.click()
@@ -400,3 +414,13 @@ const modalHandler = (() => {
         overlay.classList.remove('active');
     }
 })();
+
+
+function checkTurn(){
+    document.addEventListener('click', () => {
+        console.log(gameboardCellHandler.turn)
+        console.log(gameboardCellHandler.winner)
+    })
+}
+
+checkTurn()
