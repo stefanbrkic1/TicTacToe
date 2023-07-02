@@ -309,9 +309,11 @@ const playAgain = (() => {
             }
             })
             gameData.mode === 'vsComputer' ? gameboardCellHandler.turn = 'computer' : gameboardCellHandler.turn = 'O'
-            setTimeout(() => {
-                gameboardCellHandler.performComputerTurn();
-            }, 1500) 
+            if(gameboardCellHandler.turn === 'player'){
+                setTimeout(() => {
+                    performComputerTurn()
+                }, 1500)
+            }
         }
         else if (gameboardCellHandler.turn === 'O' || gameboardCellHandler.turn === 'computer') {
             displayTurn.classList.remove('o-turn')
@@ -419,7 +421,6 @@ const modalHandler = (() => {
 function checkTurn(){
     document.addEventListener('click', () => {
         console.log(gameboardCellHandler.turn)
-        console.log(gameboardCellHandler.winner)
     })
 }
 
