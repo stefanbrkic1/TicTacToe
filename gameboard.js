@@ -171,7 +171,6 @@ const performComputerTurn = () => {
                 if (target.classList.contains('disabled-cell')) {
                     return;
                 }
-
                 if (turn === 'X') {
                     cell.innerHTML = '<i class="fa-solid fa-xmark fa-2xl red-mark unclickable"></i>';
                     target.classList.add('disabled-cell');
@@ -308,12 +307,12 @@ const playAgain = (() => {
                 }
             }
             })
-            gameData.mode === 'vsComputer' ? gameboardCellHandler.turn = 'computer' : gameboardCellHandler.turn = 'O'
             if(gameboardCellHandler.turn === 'player'){
                 setTimeout(() => {
-                    performComputerTurn()
+                    gameboardCellHandler.performComputerTurn()
                 }, 1500)
             }
+            gameData.mode === 'vsComputer' ? gameboardCellHandler.turn = 'computer' : gameboardCellHandler.turn = 'O'
         }
         else if (gameboardCellHandler.turn === 'O' || gameboardCellHandler.turn === 'computer') {
             displayTurn.classList.remove('o-turn')
@@ -332,7 +331,7 @@ const playAgain = (() => {
                 }
             })
             gameData.mode === 'vsComputer' ? gameboardCellHandler.turn = 'player' : gameboardCellHandler.turn = 'X' 
-                
+
         }
         btnModalClose.click()
     })
@@ -416,12 +415,3 @@ const modalHandler = (() => {
         overlay.classList.remove('active');
     }
 })();
-
-
-function checkTurn(){
-    document.addEventListener('click', () => {
-        console.log(gameboardCellHandler.turn)
-    })
-}
-
-checkTurn()
