@@ -26,8 +26,8 @@ const setScoreTableNames = (() => {
         playerXScoreName.textContent = gameData.playerX.name;
         playerOScoreName.textContent = gameData.playerO.name;
     } else {
-            playerXScoreName.textContent = gameData.player.name;
-            playerOScoreName.textContent = 'Computer';
+        playerXScoreName.textContent = gameData.player.name;
+        playerOScoreName.textContent = 'Computer';
     }
 })();
 
@@ -67,12 +67,12 @@ const gameboardCellHandler = (() => {
         const winnerDisplay = document.getElementById('winnerDisplay');
         const markWinnerDisplay = document.getElementById('markWinnerDisplay')
 
-        if(gameData.mode === 'pvp'){
+        if (gameData.mode === 'pvp') {
             if (hasWinner) {
                 winner = turn === 'X' ? 'O' : 'X';
                 markWinnerDisplay.textContent = 'WINNER IS'
                 openWinnerModal.click();
-    
+
                 if (winner === 'X') {
                     gameboardCellHandler.scoreX++
                     const scoreXDisplay = document.getElementById('scoreX')
@@ -98,12 +98,12 @@ const gameboardCellHandler = (() => {
                 markWinnerDisplay.textContent = 'NO WINNER'
             }
         }
-        else if(gameData.mode === 'vsComputer'){
+        else if (gameData.mode === 'vsComputer') {
             if (hasWinner) {
                 winner = turn === 'player' ? 'computer' : 'player';
                 markWinnerDisplay.textContent = 'WINNER IS'
                 openWinnerModal.click();
-    
+
                 if (winner === 'player') {
                     gameboardCellHandler.scoreX++
                     const scoreXDisplay = document.getElementById('scoreX')
@@ -129,35 +129,41 @@ const gameboardCellHandler = (() => {
                 markWinnerDisplay.textContent = 'NO WINNER'
             }
         }
-}
-
-const removeWinner = (() => {
-    const playAgainBtn = document.getElementById('playAgainBtn')
-    playAgainBtn.addEventListener('click', () => {
-        winner = ''
-    })
-})()
-
-const performComputerTurn = () => {
-    if (winner === 'player' || winner === 'computer') {
-        return; // Stop if there is already a winner
-      }
-    
-    const randomMove = () => Math.floor(Math.random() * 9);
-    let cellsArr = Array.from(cells);
-    let randomIndex = randomMove();
-
-    while (
-        cellsArr[randomIndex].classList.contains('disabled-cell') &&
-        !gameboardArray.every(mark => mark !== 0)
-    ) {
-        randomIndex = randomMove();
     }
 
-    cellsArr[randomIndex].click();
+    const removeWinner = (() => {
+        const playAgainBtn = document.getElementById('playAgainBtn')
+        playAgainBtn.addEventListener('click', () => {
+            winner = ''
+            if (turn === 'X' || turn === 'player') {
+                gameData.mode === 'vsComputer' ? gameboardCellHandler.turn = 'computer' : gameboardCellHandler.turn = 'O'
+            }
+            else if (turn === 'O' || turn === 'computer') {
+                gameData.mode === 'vsComputer' ? gameboardCellHandler.turn = 'player' : gameboardCellHandler.turn = 'X'
+            }
+        })
+    })()
 
-    checkWinningCombination()
-}
+    const performComputerTurn = () => {
+        if (winner === 'player' || winner === 'computer') {
+            return; // Stop if there is already a winner
+        }
+
+        const randomMove = () => Math.floor(Math.random() * 9);
+        let cellsArr = Array.from(cells);
+        let randomIndex = randomMove();
+
+        while (
+            cellsArr[randomIndex].classList.contains('disabled-cell') &&
+            !gameboardArray.every(mark => mark !== 0)
+        ) {
+            randomIndex = randomMove();
+        }
+
+        cellsArr[randomIndex].click();
+
+        checkWinningCombination()
+    }
 
 
     if (gameData.mode === 'pvp') {
@@ -217,14 +223,13 @@ const performComputerTurn = () => {
         displayTurn.textContent = `${gameData.player.name}'s TURN`;
         displayTurnBigScreen.textContent = `${gameData.player.name}'s TURN`;
         turn = 'player';
-            
+
         cells.forEach((cell, index) => {
             cell.addEventListener('click', (e) => {
                 const target = e.target;
                 if (target.classList.contains('disabled-cell')) {
                     return;
                 }
-    
                 else if (turn === 'player') {
                     cell.innerHTML = '<i class="fa-solid fa-xmark fa-2xl red-mark unclickable"></i>';
                     target.classList.add('disabled-cell');
@@ -241,12 +246,12 @@ const performComputerTurn = () => {
                             cell.classList.remove('x-hover');
                         }
                     });
-    
+
                     checkWinningCombination()
 
                     setTimeout(() => {
                         performComputerTurn();
-                    }, 1000); 
+                    }, 1000);
 
                 } else if (turn === 'computer') {
                     cell.innerHTML = '<i class="fa-solid fa-o fa-2xl blue-mark unclickable"></i>';
@@ -268,8 +273,8 @@ const performComputerTurn = () => {
             });
         });
     }
-    
-    
+
+
 
     return { winner, turn, gameboardArray, cells, scoreX, scoreO, performComputerTurn };
 })();
@@ -280,61 +285,67 @@ const playAgain = (() => {
     const playAgainBtn = document.getElementById('playAgainBtn')
     const btnModalClose = document.getElementById('btnWinnerClose')
 
-    playAgainBtn.addEventListener('click', () => {
-        gameboardCellHandler.gameboardArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        gameboardCellHandler.winner = '';
+    if (gameData.mode === 'vsComputer') {
+        playAgainBtn.addEventListener('click', () => {
+            location.reload()
+        })
+    }
+    else {
+        playAgainBtn.addEventListener('click', () => {
+            gameboardCellHandler.gameboardArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+            gameboardCellHandler.winner = '';
 
-        if (gameboardCellHandler.turn === 'X' || gameboardCellHandler.turn === 'player') {
-            displayTurn.classList.remove('x-turn')
-            displayTurn.classList.add('o-turn')
-            gameData.mode ==='pvp' ? displayTurn.textContent = `${gameData.playerO.name}'s TURN` : displayTurn.textContent = `Computer's TURN` 
-            displayTurnBigScreen.classList.remove('x-turn')
-            displayTurnBigScreen.classList.add('o-turn')
-            gameData.mode ==='pvp' ? displayTurnBigScreen.textContent = `${gameData.playerO.name}'s TURN` : displayTurnBigScreen.textContent = `Computer's TURN` 
+            if (gameboardCellHandler.turn === 'X' || gameboardCellHandler.turn === 'player') {
+                displayTurn.classList.remove('x-turn')
+                displayTurn.classList.add('o-turn')
+                gameData.mode === 'pvp' ? displayTurn.textContent = `${gameData.playerO.name}'s TURN` : displayTurn.textContent = `Computer's TURN`
+                displayTurnBigScreen.classList.remove('x-turn')
+                displayTurnBigScreen.classList.add('o-turn')
+                gameData.mode === 'pvp' ? displayTurnBigScreen.textContent = `${gameData.playerO.name}'s TURN` : displayTurnBigScreen.textContent = `Computer's TURN`
 
-            gameboardCellHandler.cells.forEach(cell => {
-                cell.classList.remove('disabled-cell')
-                cell.innerHTML = ''
-                if(gameData.mode === 'pvp'){
-                    if (!cell.classList.contains('disabled-cell')) {
-                        cell.classList.remove('x-hover');
-                        cell.classList.add('o-hover');
+                gameboardCellHandler.cells.forEach(cell => {
+                    cell.classList.remove('disabled-cell')
+                    cell.innerHTML = ''
+                    if (gameData.mode === 'pvp') {
+                        if (!cell.classList.contains('disabled-cell')) {
+                            cell.classList.remove('x-hover');
+                            cell.classList.add('o-hover');
+                        }
                     }
+                    else {
+                        if (!cell.classList.contains('disabled-cell')) {
+                            cell.classList.remove('x-hover');
+                        }
+                    }
+                })
+                if (gameboardCellHandler.turn === 'player') {
+                    setTimeout(() => {
+                        gameboardCellHandler.performComputerTurn()
+                    }, 1500)
                 }
-                else{
+
+            }
+            else if (gameboardCellHandler.turn === 'O' || gameboardCellHandler.turn === 'computer') {
+                displayTurn.classList.remove('o-turn')
+                displayTurn.classList.add('x-turn')
+                gameData.mode === 'pvp' ? displayTurn.textContent = `${gameData.playerX.name}'s TURN` : displayTurn.textContent = `${gameData.player.name}'s TURN`
+                displayTurnBigScreen.classList.remove('o-turn')
+                displayTurnBigScreen.classList.add('x-turn')
+                gameData.mode === 'pvp' ? displayTurnBigScreen.textContent = `${gameData.playerX.name}'s TURN` : displayTurnBigScreen.textContent = `${gameData.player.name}'s TURN`
+
+                gameboardCellHandler.cells.forEach(cell => {
+                    cell.classList.remove('disabled-cell')
+                    cell.innerHTML = ''
                     if (!cell.classList.contains('disabled-cell')) {
-                        cell.classList.remove('x-hover');
-                }
-            }
-            })
-            if(gameboardCellHandler.turn === 'player'){
-                setTimeout(() => {
-                    gameboardCellHandler.performComputerTurn()
-                }, 1500)
-            }
-            gameData.mode === 'vsComputer' ? gameboardCellHandler.turn = 'computer' : gameboardCellHandler.turn = 'O'
-        }
-        else if (gameboardCellHandler.turn === 'O' || gameboardCellHandler.turn === 'computer') {
-            displayTurn.classList.remove('o-turn')
-            displayTurn.classList.add('x-turn')
-            gameData.mode === 'pvp' ? displayTurn.textContent = `${gameData.playerX.name}'s TURN` : displayTurn.textContent = `${gameData.player.name}'s TURN`
-            displayTurnBigScreen.classList.remove('o-turn')
-            displayTurnBigScreen.classList.add('x-turn')
-            gameData.mode === 'pvp' ? displayTurnBigScreen.textContent = `${gameData.playerX.name}'s TURN` : displayTurnBigScreen.textContent = `${gameData.player.name}'s TURN`
+                        cell.classList.remove('o-hover');
+                        cell.classList.add('x-hover');
+                    }
+                })
 
-            gameboardCellHandler.cells.forEach(cell => {
-                cell.classList.remove('disabled-cell')
-                cell.innerHTML = ''
-                if (!cell.classList.contains('disabled-cell')) {
-                    cell.classList.remove('o-hover');
-                    cell.classList.add('x-hover');
-                }
-            })
-            gameData.mode === 'vsComputer' ? gameboardCellHandler.turn = 'player' : gameboardCellHandler.turn = 'X' 
-
-        }
-        btnModalClose.click()
-    })
+            }
+            btnModalClose.click()
+        })
+    }
 })()
 
 const restartGame = (() => {
@@ -415,3 +426,4 @@ const modalHandler = (() => {
         overlay.classList.remove('active');
     }
 })();
+
