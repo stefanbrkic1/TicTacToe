@@ -237,6 +237,7 @@ const gameboardCellHandler = (() => {
                     gameboardCellHandler.gameboardArray[index] = 'X';
                     turn = 'computer';
                     displayTurn.classList.remove('x-turn');
+                    displayTurn.classList.add('o-turn');
                     displayTurn.textContent = `Computer's TURN`;
                     displayTurnBigScreen.classList.remove('x-turn');
                     displayTurnBigScreen.classList.add('o-turn');
@@ -260,6 +261,7 @@ const gameboardCellHandler = (() => {
                     gameboardCellHandler.gameboardArray[index] = 'O';
                     turn = 'player';
                     displayTurn.classList.remove('o-turn');
+                    displayTurn.classList.add('x-turn');
                     displayTurn.textContent = `${gameData.player.name}'s TURN`;
                     displayTurnBigScreen.classList.remove('o-turn');
                     displayTurnBigScreen.classList.add('x-turn');
